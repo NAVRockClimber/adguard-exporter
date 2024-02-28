@@ -121,8 +121,7 @@ jobs:
           context: ./controller
       - name: Build the Docker image
         run: |
-          version=$(git describe --abbrev=0 --tags)
-          currImage="rockclimber81/adguard-exporter:$version"
+          currImage="rockclimber81/adguard-exporter:dev"
           latestImage="rockclimber81/cni-plugins"
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm --build-arg version=${{ vars.version }} -t $currImage -t $latestImage --push .
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm --build-arg version=${{ vars.version }} -t $currImage --push .
           docker logout
